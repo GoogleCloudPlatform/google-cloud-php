@@ -222,6 +222,9 @@ class Table
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      *     @type int $startIndex Zero-based index of the starting row.
+     *     @type bool $returnRawResults Returns the raw data types returned from
+     *           BigQuery without converting their values into native PHP types or
+     *           the custom type classes supported by this library.
      * }
      * @return ItemIterator<array>
      * @throws GoogleException
@@ -230,10 +233,11 @@ class Table
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
         $schema = $this->info()['schema']['fields'];
+        $returnRawResults = isset($options['returnRawResults']) ? $options['returnRawResults'] : false;
 
         return new ItemIterator(
             new PageIterator(
-                function (array $row) use ($schema) {
+                function (array $row) use ($schema, $returnRawResults) {
                     $mergedRow = [];
 
                     if ($row === null) {
@@ -246,7 +250,9 @@ class Table
 
                     foreach ($row['f'] as $key => $value) {
                         $fieldSchema = $schema[$key];
-                        $mergedRow[$fieldSchema['name']] = $this->mapper->fromBigQuery($value, $fieldSchema);
+                        $mergedRow[$fieldSchema['name']] = $returnRawResults
+                            ? $value['v']
+                            : $this->mapper->fromBigQuery($value, $fieldSchema);
                     }
 
                     return $mergedRow;
