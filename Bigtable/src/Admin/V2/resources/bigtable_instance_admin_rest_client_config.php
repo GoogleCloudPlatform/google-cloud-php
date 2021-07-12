@@ -3,72 +3,14 @@
 return [
     'interfaces' => [
         'google.bigtable.admin.v2.BigtableInstanceAdmin' => [
-            'CreateInstance' => [
+            'CreateAppProfile' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/instances',
-                'body' => '*',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/appProfiles',
+                'body' => 'app_profile',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetInstance' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListInstances' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*}/instances',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateInstance' => [
-                'method' => 'put',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*}',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'PartialUpdateInstance' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v2/{instance.name=projects/*/instances/*}',
-                'body' => 'instance',
-                'placeholders' => [
-                    'instance.name' => [
-                        'getters' => [
-                            'getInstance',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteInstance' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -85,20 +27,10 @@ return [
                     ],
                 ],
             ],
-            'GetCluster' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListClusters' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/clusters',
+            'CreateInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*}/instances',
+                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -107,10 +39,9 @@ return [
                     ],
                 ],
             ],
-            'UpdateCluster' => [
-                'method' => 'put',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*}',
-                'body' => '*',
+            'DeleteAppProfile' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/appProfiles/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -130,14 +61,13 @@ return [
                     ],
                 ],
             ],
-            'CreateAppProfile' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/appProfiles',
-                'body' => 'app_profile',
+            'DeleteInstance' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*}',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
@@ -145,6 +75,40 @@ return [
             'GetAppProfile' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/instances/*/appProfiles/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCluster' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{resource=projects/*/instances/*}:getIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetInstance' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -164,38 +128,37 @@ return [
                     ],
                 ],
             ],
-            'UpdateAppProfile' => [
+            'ListClusters' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*}/clusters',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListInstances' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*}/instances',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PartialUpdateInstance' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v2/{app_profile.name=projects/*/instances/*/appProfiles/*}',
-                'body' => 'app_profile',
+                'uriTemplate' => '/v2/{instance.name=projects/*/instances/*}',
+                'body' => 'instance',
                 'placeholders' => [
-                    'app_profile.name' => [
+                    'instance.name' => [
                         'getters' => [
-                            'getAppProfile',
+                            'getInstance',
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteAppProfile' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/instances/*/appProfiles/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{resource=projects/*/instances/*}:getIamPolicy',
-                'body' => '*',
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
                         ],
                     ],
                 ],
@@ -224,11 +187,23 @@ return [
                     ],
                 ],
             ],
-        ],
-        'google.longrunning.Operations' => [
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=operations/**}:cancel',
+            'UpdateAppProfile' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{app_profile.name=projects/*/instances/*/appProfiles/*}',
+                'body' => 'app_profile',
+                'placeholders' => [
+                    'app_profile.name' => [
+                        'getters' => [
+                            'getAppProfile',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCluster' => [
+                'method' => 'put',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*}',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -237,31 +212,10 @@ return [
                     ],
                 ],
             ],
-            'DeleteOperation' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=operations/**}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=operations/**}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=operations/projects/**}/operations',
+            'UpdateInstance' => [
+                'method' => 'put',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*}',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
