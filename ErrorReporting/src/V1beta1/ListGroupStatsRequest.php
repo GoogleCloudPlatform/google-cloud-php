@@ -17,10 +17,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as <code>projects/</code> plus the
-     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
-     * Platform project ID</a>.
-     * Example: <code>projects/my-project-123</code>.
+     * as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
+     * and `{projectNumber}` can be found in the
+     * [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     * Examples: `projects/my-project-123`, `projects/5551234`.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -104,10 +104,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_name
      *           Required. The resource name of the Google Cloud Platform project. Written
-     *           as <code>projects/</code> plus the
-     *           <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
-     *           Platform project ID</a>.
-     *           Example: <code>projects/my-project-123</code>.
+     *           as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
+     *           and `{projectNumber}` can be found in the
+     *           [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     *           Examples: `projects/my-project-123`, `projects/5551234`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $group_id
      *           Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $service_filter
@@ -151,10 +151,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as <code>projects/</code> plus the
-     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
-     * Platform project ID</a>.
-     * Example: <code>projects/my-project-123</code>.
+     * as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
+     * and `{projectNumber}` can be found in the
+     * [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     * Examples: `projects/my-project-123`, `projects/5551234`.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -166,10 +166,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as <code>projects/</code> plus the
-     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
-     * Platform project ID</a>.
-     * Example: <code>projects/my-project-123</code>.
+     * as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
+     * and `{projectNumber}` can be found in the
+     * [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     * Examples: `projects/my-project-123`, `projects/5551234`.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -215,7 +215,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * Data for all service contexts is returned if this field is not specified.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter|null
      */
     public function getServiceFilter()
     {
@@ -260,7 +260,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * <code>ErrorGroupStats</code> with zero occurrences are returned.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
+     * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange|null
      */
     public function getTimeRange()
     {
@@ -304,7 +304,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * If not set, no timed counts are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTimedCountDuration()
     {
@@ -370,7 +370,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * alignment is chosen. Default is 00:00 UTC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp alignment_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getAlignmentTime()
     {
