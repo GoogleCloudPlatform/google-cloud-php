@@ -34,8 +34,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     private $resource = null;
     /**
      * Output only. The associated monitored resource metadata. When reading a
-     * a timeseries, this field will include metadata labels that are explicitly
-     * named in the reduction. When creating a timeseries, this field is ignored.
+     * time series, this field will include metadata labels that are explicitly
+     * named in the reduction. When creating a time series, this field is ignored.
      *
      * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 7;</code>
      */
@@ -75,6 +75,14 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Point points = 5;</code>
      */
     private $points;
+    /**
+     * The units in which the metric value is reported. It is only applicable
+     * if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit`
+     * defines the representation of the stored metric values.
+     *
+     * Generated from protobuf field <code>string unit = 8;</code>
+     */
+    private $unit = '';
 
     /**
      * Constructor.
@@ -90,8 +98,8 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *           monitored resource types in their time series data.
      *     @type \Google\Api\MonitoredResourceMetadata $metadata
      *           Output only. The associated monitored resource metadata. When reading a
-     *           a timeseries, this field will include metadata labels that are explicitly
-     *           named in the reduction. When creating a timeseries, this field is ignored.
+     *           time series, this field will include metadata labels that are explicitly
+     *           named in the reduction. When creating a time series, this field is ignored.
      *     @type int $metric_kind
      *           The metric kind of the time series. When listing time series, this metric
      *           kind might be different from the metric kind of the associated metric if
@@ -115,6 +123,10 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *           metric. If the associated metric's descriptor must be auto-created, then
      *           the value type of the descriptor is determined by the point's type, which
      *           must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.
+     *     @type string $unit
+     *           The units in which the metric value is reported. It is only applicable
+     *           if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit`
+     *           defines the representation of the stored metric values.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,11 +139,21 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * series.
      *
      * Generated from protobuf field <code>.google.api.Metric metric = 1;</code>
-     * @return \Google\Api\Metric
+     * @return \Google\Api\Metric|null
      */
     public function getMetric()
     {
-        return $this->metric;
+        return isset($this->metric) ? $this->metric : null;
+    }
+
+    public function hasMetric()
+    {
+        return isset($this->metric);
+    }
+
+    public function clearMetric()
+    {
+        unset($this->metric);
     }
 
     /**
@@ -155,11 +177,21 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * monitored resource types in their time series data.
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
-     * @return \Google\Api\MonitoredResource
+     * @return \Google\Api\MonitoredResource|null
      */
     public function getResource()
     {
-        return $this->resource;
+        return isset($this->resource) ? $this->resource : null;
+    }
+
+    public function hasResource()
+    {
+        return isset($this->resource);
+    }
+
+    public function clearResource()
+    {
+        unset($this->resource);
     }
 
     /**
@@ -180,21 +212,31 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The associated monitored resource metadata. When reading a
-     * a timeseries, this field will include metadata labels that are explicitly
-     * named in the reduction. When creating a timeseries, this field is ignored.
+     * time series, this field will include metadata labels that are explicitly
+     * named in the reduction. When creating a time series, this field is ignored.
      *
      * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 7;</code>
-     * @return \Google\Api\MonitoredResourceMetadata
+     * @return \Google\Api\MonitoredResourceMetadata|null
      */
     public function getMetadata()
     {
-        return $this->metadata;
+        return isset($this->metadata) ? $this->metadata : null;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
     }
 
     /**
      * Output only. The associated monitored resource metadata. When reading a
-     * a timeseries, this field will include metadata labels that are explicitly
-     * named in the reduction. When creating a timeseries, this field is ignored.
+     * time series, this field will include metadata labels that are explicitly
+     * named in the reduction. When creating a time series, this field is ignored.
      *
      * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 7;</code>
      * @param \Google\Api\MonitoredResourceMetadata $var
@@ -242,7 +284,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     public function setMetricKind($var)
     {
-        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_MetricKind::class);
+        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor\MetricKind::class);
         $this->metric_kind = $var;
 
         return $this;
@@ -276,7 +318,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     public function setValueType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_ValueType::class);
+        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor\ValueType::class);
         $this->value_type = $var;
 
         return $this;
@@ -316,6 +358,36 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Monitoring\V3\Point::class);
         $this->points = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The units in which the metric value is reported. It is only applicable
+     * if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit`
+     * defines the representation of the stored metric values.
+     *
+     * Generated from protobuf field <code>string unit = 8;</code>
+     * @return string
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+
+    /**
+     * The units in which the metric value is reported. It is only applicable
+     * if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit`
+     * defines the representation of the stored metric values.
+     *
+     * Generated from protobuf field <code>string unit = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUnit($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->unit = $var;
 
         return $this;
     }

@@ -82,11 +82,21 @@ class CreateMetricDescriptorRequest extends \Google\Protobuf\Internal\Message
      * descriptor.
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Api\MetricDescriptor
+     * @return \Google\Api\MetricDescriptor|null
      */
     public function getMetricDescriptor()
     {
-        return $this->metric_descriptor;
+        return isset($this->metric_descriptor) ? $this->metric_descriptor : null;
+    }
+
+    public function hasMetricDescriptor()
+    {
+        return isset($this->metric_descriptor);
+    }
+
+    public function clearMetricDescriptor()
+    {
+        unset($this->metric_descriptor);
     }
 
     /**

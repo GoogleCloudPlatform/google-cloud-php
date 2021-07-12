@@ -284,11 +284,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * that have limited capacity might not show this documentation.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Documentation documentation = 13;</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation|null
      */
     public function getDocumentation()
     {
-        return $this->documentation;
+        return isset($this->documentation) ? $this->documentation : null;
+    }
+
+    public function hasDocumentation()
+    {
+        return isset($this->documentation);
+    }
+
+    public function clearDocumentation()
+    {
+        unset($this->documentation);
     }
 
     /**
@@ -304,7 +314,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function setDocumentation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Documentation::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation::class);
         $this->documentation = $var;
 
         return $this;
@@ -408,7 +418,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function setCombiner($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\AlertPolicy_ConditionCombinerType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\AlertPolicy\ConditionCombinerType::class);
         $this->combiner = $var;
 
         return $this;
@@ -422,11 +432,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * a field projection has been specified that strips it out.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 17;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getEnabled()
     {
-        return $this->enabled;
+        return isset($this->enabled) ? $this->enabled : null;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
     }
 
     /**
@@ -488,11 +508,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * policy is valid. If not OK, the alert policy will not generate incidents.
      *
      * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getValidity()
     {
-        return $this->validity;
+        return isset($this->validity) ? $this->validity : null;
+    }
+
+    public function hasValidity()
+    {
+        return isset($this->validity);
+    }
+
+    public function clearValidity()
+    {
+        unset($this->validity);
     }
 
     /**
@@ -558,11 +588,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * in a call to create or update, this field will be ignored.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord creation_record = 10;</code>
-     * @return \Google\Cloud\Monitoring\V3\MutationRecord
+     * @return \Google\Cloud\Monitoring\V3\MutationRecord|null
      */
     public function getCreationRecord()
     {
-        return $this->creation_record;
+        return isset($this->creation_record) ? $this->creation_record : null;
+    }
+
+    public function hasCreationRecord()
+    {
+        return isset($this->creation_record);
+    }
+
+    public function clearCreationRecord()
+    {
+        unset($this->creation_record);
     }
 
     /**
@@ -586,11 +626,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * provided in a call to create or update, this field will be ignored.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord mutation_record = 11;</code>
-     * @return \Google\Cloud\Monitoring\V3\MutationRecord
+     * @return \Google\Cloud\Monitoring\V3\MutationRecord|null
      */
     public function getMutationRecord()
     {
-        return $this->mutation_record;
+        return isset($this->mutation_record) ? $this->mutation_record : null;
+    }
+
+    public function hasMutationRecord()
+    {
+        return isset($this->mutation_record);
+    }
+
+    public function clearMutationRecord()
+    {
+        unset($this->mutation_record);
     }
 
     /**

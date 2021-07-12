@@ -142,11 +142,21 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      * quality.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.ServiceLevelIndicator service_level_indicator = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\ServiceLevelIndicator
+     * @return \Google\Cloud\Monitoring\V3\ServiceLevelIndicator|null
      */
     public function getServiceLevelIndicator()
     {
-        return $this->service_level_indicator;
+        return isset($this->service_level_indicator) ? $this->service_level_indicator : null;
+    }
+
+    public function hasServiceLevelIndicator()
+    {
+        return isset($this->service_level_indicator);
+    }
+
+    public function clearServiceLevelIndicator()
+    {
+        unset($this->service_level_indicator);
     }
 
     /**
@@ -199,11 +209,16 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      * Must be an integer multiple of 1 day no larger than 30 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration rolling_period = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getRollingPeriod()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasRollingPeriod()
+    {
+        return $this->hasOneof(5);
     }
 
     /**
@@ -233,6 +248,11 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
     public function getCalendarPeriod()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasCalendarPeriod()
+    {
+        return $this->hasOneof(6);
     }
 
     /**

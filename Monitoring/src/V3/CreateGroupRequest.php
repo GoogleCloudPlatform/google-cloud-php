@@ -90,11 +90,21 @@ class CreateGroupRequest extends \Google\Protobuf\Internal\Message
      * the system assigns the name.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Group group = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\Group
+     * @return \Google\Cloud\Monitoring\V3\Group|null
      */
     public function getGroup()
     {
-        return $this->group;
+        return isset($this->group) ? $this->group : null;
+    }
+
+    public function hasGroup()
+    {
+        return isset($this->group);
+    }
+
+    public function clearGroup()
+    {
+        unset($this->group);
     }
 
     /**

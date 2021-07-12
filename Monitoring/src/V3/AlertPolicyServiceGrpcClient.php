@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,10 +41,11 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the existing alerting policies for the project.
+     * Lists the existing alerting policies for the workspace.
      * @param \Google\Cloud\Monitoring\V3\ListAlertPoliciesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListAlertPolicies(\Google\Cloud\Monitoring\V3\ListAlertPoliciesRequest $argument,
       $metadata = [], $options = []) {
@@ -59,6 +60,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetAlertPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetAlertPolicy(\Google\Cloud\Monitoring\V3\GetAlertPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -73,6 +75,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\CreateAlertPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateAlertPolicy(\Google\Cloud\Monitoring\V3\CreateAlertPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -87,6 +90,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\DeleteAlertPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteAlertPolicy(\Google\Cloud\Monitoring\V3\DeleteAlertPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -104,6 +108,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\UpdateAlertPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateAlertPolicy(\Google\Cloud\Monitoring\V3\UpdateAlertPolicyRequest $argument,
       $metadata = [], $options = []) {

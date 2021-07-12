@@ -3,9 +3,44 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.MetricService' => [
-            'ListMonitoredResourceDescriptors' => [
+            'CreateMetricDescriptor' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{name=projects/*}/metricDescriptors',
+                'body' => 'metric_descriptor',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateTimeSeries' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{name=projects/*}/timeSeries',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMetricDescriptor' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/metricDescriptors/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMetricDescriptor' => [
                 'method' => 'get',
-                'uriTemplate' => '/v3/{name=projects/*}/monitoredResourceDescriptors',
+                'uriTemplate' => '/v3/{name=projects/*/metricDescriptors/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -36,32 +71,9 @@ return [
                     ],
                 ],
             ],
-            'GetMetricDescriptor' => [
+            'ListMonitoredResourceDescriptors' => [
                 'method' => 'get',
-                'uriTemplate' => '/v3/{name=projects/*/metricDescriptors/**}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateMetricDescriptor' => [
-                'method' => 'post',
-                'uriTemplate' => '/v3/{name=projects/*}/metricDescriptors',
-                'body' => 'metric_descriptor',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteMetricDescriptor' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=projects/*/metricDescriptors/**}',
+                'uriTemplate' => '/v3/{name=projects/*}/monitoredResourceDescriptors',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -73,18 +85,16 @@ return [
             'ListTimeSeries' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*}/timeSeries',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v3/{name=organizations/*}/timeSeries',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v3/{name=folders/*}/timeSeries',
                     ],
                 ],
-            ],
-            'CreateTimeSeries' => [
-                'method' => 'post',
-                'uriTemplate' => '/v3/{name=projects/*}/timeSeries',
-                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
