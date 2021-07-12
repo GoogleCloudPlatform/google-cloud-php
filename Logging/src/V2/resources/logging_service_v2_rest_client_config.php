@@ -32,14 +32,14 @@ return [
                     ],
                 ],
             ],
-            'WriteLogEntries' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/entries:write',
-                'body' => '*',
-            ],
             'ListLogEntries' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/entries:list',
+                'body' => '*',
+            ],
+            'WriteLogEntries' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/entries:write',
                 'body' => '*',
             ],
             'ListMonitoredResourceDescriptors' => [

@@ -53,23 +53,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $metricsServiceV2Client = new MetricsServiceV2Client();
  * try {
- *     $formattedParent = $metricsServiceV2Client->projectName('[PROJECT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $metricsServiceV2Client->listLogMetrics($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
+ *     $metric = new LogMetric();
+ *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
  * } finally {
  *     $metricsServiceV2Client->close();
  * }
@@ -116,10 +102,7 @@ class MetricsServiceV2GapicClient
         'https://www.googleapis.com/auth/logging.read',
         'https://www.googleapis.com/auth/logging.write',
     ];
-    private static $billingNameTemplate;
-    private static $folderNameTemplate;
-    private static $metricNameTemplate;
-    private static $organizationNameTemplate;
+    private static $logMetricNameTemplate;
     private static $projectNameTemplate;
     private static $pathTemplateMap;
 
@@ -142,40 +125,13 @@ class MetricsServiceV2GapicClient
         ];
     }
 
-    private static function getBillingNameTemplate()
+    private static function getLogMetricNameTemplate()
     {
-        if (null == self::$billingNameTemplate) {
-            self::$billingNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
+        if (null == self::$logMetricNameTemplate) {
+            self::$logMetricNameTemplate = new PathTemplate('projects/{project}/metrics/{metric}');
         }
 
-        return self::$billingNameTemplate;
-    }
-
-    private static function getFolderNameTemplate()
-    {
-        if (null == self::$folderNameTemplate) {
-            self::$folderNameTemplate = new PathTemplate('folders/{folder}');
-        }
-
-        return self::$folderNameTemplate;
-    }
-
-    private static function getMetricNameTemplate()
-    {
-        if (null == self::$metricNameTemplate) {
-            self::$metricNameTemplate = new PathTemplate('projects/{project}/metrics/{metric}');
-        }
-
-        return self::$metricNameTemplate;
-    }
-
-    private static function getOrganizationNameTemplate()
-    {
-        if (null == self::$organizationNameTemplate) {
-            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
-        }
-
-        return self::$organizationNameTemplate;
+        return self::$logMetricNameTemplate;
     }
 
     private static function getProjectNameTemplate()
@@ -191,10 +147,7 @@ class MetricsServiceV2GapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'billing' => self::getBillingNameTemplate(),
-                'folder' => self::getFolderNameTemplate(),
-                'metric' => self::getMetricNameTemplate(),
-                'organization' => self::getOrganizationNameTemplate(),
+                'logMetric' => self::getLogMetricNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
@@ -204,67 +157,19 @@ class MetricsServiceV2GapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a billing resource.
-     *
-     * @param string $billingAccount
-     *
-     * @return string The formatted billing resource.
-     * @experimental
-     */
-    public static function billingName($billingAccount)
-    {
-        return self::getBillingNameTemplate()->render([
-            'billing_account' => $billingAccount,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a folder resource.
-     *
-     * @param string $folder
-     *
-     * @return string The formatted folder resource.
-     * @experimental
-     */
-    public static function folderName($folder)
-    {
-        return self::getFolderNameTemplate()->render([
-            'folder' => $folder,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a metric resource.
+     * a log_metric resource.
      *
      * @param string $project
      * @param string $metric
      *
-     * @return string The formatted metric resource.
+     * @return string The formatted log_metric resource.
      * @experimental
      */
-    public static function metricName($project, $metric)
+    public static function logMetricName($project, $metric)
     {
-        return self::getMetricNameTemplate()->render([
+        return self::getLogMetricNameTemplate()->render([
             'project' => $project,
             'metric' => $metric,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent
-     * a organization resource.
-     *
-     * @param string $organization
-     *
-     * @return string The formatted organization resource.
-     * @experimental
-     */
-    public static function organizationName($organization)
-    {
-        return self::getOrganizationNameTemplate()->render([
-            'organization' => $organization,
         ]);
     }
 
@@ -288,10 +193,7 @@ class MetricsServiceV2GapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - billing: billingAccounts/{billing_account}
-     * - folder: folders/{folder}
-     * - metric: projects/{project}/metrics/{metric}
-     * - organization: organizations/{organization}
+     * - logMetric: projects/{project}/metrics/{metric}
      * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -391,6 +293,115 @@ class MetricsServiceV2GapicClient
     }
 
     /**
+     * Creates or updates a logs-based metric.
+     *
+     * Sample code:
+     * ```
+     * $metricsServiceV2Client = new MetricsServiceV2Client();
+     * try {
+     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
+     *     $metric = new LogMetric();
+     *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
+     * } finally {
+     *     $metricsServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $metricName Required. The resource name of the metric to update:
+     *
+     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     *
+     * The updated metric must be provided in the request and it's
+     * `name` field must be the same as `[METRIC_ID]` If the metric
+     * does not exist in `[PROJECT_ID]`, then a new metric is created.
+     * @param LogMetric $metric       Required. The updated metric.
+     * @param array     $optionalArgs {
+     *                                Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Logging\V2\LogMetric
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function updateLogMetric($metricName, $metric, array $optionalArgs = [])
+    {
+        $request = new UpdateLogMetricRequest();
+        $request->setMetricName($metricName);
+        $request->setMetric($metric);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'metric_name' => $request->getMetricName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateLogMetric',
+            LogMetric::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a logs-based metric.
+     *
+     * Sample code:
+     * ```
+     * $metricsServiceV2Client = new MetricsServiceV2Client();
+     * try {
+     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
+     *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
+     * } finally {
+     *     $metricsServiceV2Client->close();
+     * }
+     * ```
+     *
+     * @param string $metricName Required. The resource name of the metric to delete:
+     *
+     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteLogMetric($metricName, array $optionalArgs = [])
+    {
+        $request = new DeleteLogMetricRequest();
+        $request->setMetricName($metricName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'metric_name' => $request->getMetricName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteLogMetric',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists logs-based metrics.
      *
      * Sample code:
@@ -479,7 +490,7 @@ class MetricsServiceV2GapicClient
      * ```
      * $metricsServiceV2Client = new MetricsServiceV2Client();
      * try {
-     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
+     *     $formattedMetricName = $metricsServiceV2Client->logMetricName('[PROJECT]', '[METRIC]');
      *     $response = $metricsServiceV2Client->getLogMetric($formattedMetricName);
      * } finally {
      *     $metricsServiceV2Client->close();
@@ -577,115 +588,6 @@ class MetricsServiceV2GapicClient
         return $this->startCall(
             'CreateLogMetric',
             LogMetric::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates or updates a logs-based metric.
-     *
-     * Sample code:
-     * ```
-     * $metricsServiceV2Client = new MetricsServiceV2Client();
-     * try {
-     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
-     *     $metric = new LogMetric();
-     *     $response = $metricsServiceV2Client->updateLogMetric($formattedMetricName, $metric);
-     * } finally {
-     *     $metricsServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $metricName Required. The resource name of the metric to update:
-     *
-     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     *
-     * The updated metric must be provided in the request and it's
-     * `name` field must be the same as `[METRIC_ID]` If the metric
-     * does not exist in `[PROJECT_ID]`, then a new metric is created.
-     * @param LogMetric $metric       Required. The updated metric.
-     * @param array     $optionalArgs {
-     *                                Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\Logging\V2\LogMetric
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function updateLogMetric($metricName, $metric, array $optionalArgs = [])
-    {
-        $request = new UpdateLogMetricRequest();
-        $request->setMetricName($metricName);
-        $request->setMetric($metric);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'metric_name' => $request->getMetricName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'UpdateLogMetric',
-            LogMetric::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes a logs-based metric.
-     *
-     * Sample code:
-     * ```
-     * $metricsServiceV2Client = new MetricsServiceV2Client();
-     * try {
-     *     $formattedMetricName = $metricsServiceV2Client->metricName('[PROJECT]', '[METRIC]');
-     *     $metricsServiceV2Client->deleteLogMetric($formattedMetricName);
-     * } finally {
-     *     $metricsServiceV2Client->close();
-     * }
-     * ```
-     *
-     * @param string $metricName Required. The resource name of the metric to delete:
-     *
-     *     "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function deleteLogMetric($metricName, array $optionalArgs = [])
-    {
-        $request = new DeleteLogMetricRequest();
-        $request->setMetricName($metricName);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'metric_name' => $request->getMetricName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteLogMetric',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
