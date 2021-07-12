@@ -37,12 +37,18 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      */
     private $last_update_time = null;
     /**
-     * The URI of the audio file being transcribed. Empty if the audio was sent
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent
      * as byte content.
      *
      * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $uri = '';
+    /**
+     * Output only. A copy of the TranscriptOutputConfig if it was set in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.TranscriptOutputConfig output_config = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $output_config = null;
 
     /**
      * Constructor.
@@ -58,8 +64,10 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $last_update_time
      *           Time of the most recent processing update.
      *     @type string $uri
-     *           The URI of the audio file being transcribed. Empty if the audio was sent
+     *           Output only. The URI of the audio file being transcribed. Empty if the audio was sent
      *           as byte content.
+     *     @type \Google\Cloud\Speech\V1p1beta1\TranscriptOutputConfig $output_config
+     *           Output only. A copy of the TranscriptOutputConfig if it was set in the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -99,7 +107,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * Time when the request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -135,7 +143,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * Time of the most recent processing update.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastUpdateTime()
     {
@@ -168,7 +176,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the audio file being transcribed. Empty if the audio was sent
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent
      * as byte content.
      *
      * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -180,7 +188,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URI of the audio file being transcribed. Empty if the audio was sent
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent
      * as byte content.
      *
      * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -191,6 +199,42 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A copy of the TranscriptOutputConfig if it was set in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.TranscriptOutputConfig output_config = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Speech\V1p1beta1\TranscriptOutputConfig|null
+     */
+    public function getOutputConfig()
+    {
+        return isset($this->output_config) ? $this->output_config : null;
+    }
+
+    public function hasOutputConfig()
+    {
+        return isset($this->output_config);
+    }
+
+    public function clearOutputConfig()
+    {
+        unset($this->output_config);
+    }
+
+    /**
+     * Output only. A copy of the TranscriptOutputConfig if it was set in the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.TranscriptOutputConfig output_config = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Speech\V1p1beta1\TranscriptOutputConfig $var
+     * @return $this
+     */
+    public function setOutputConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Speech\V1p1beta1\TranscriptOutputConfig::class);
+        $this->output_config = $var;
 
         return $this;
     }
